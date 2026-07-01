@@ -1,0 +1,83 @@
+{
+  "id": "asset.rule.kernel.transfers.form",
+  "plane": "rule",
+  "status": "official",
+  "surfaces": [
+    {
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.app.form.formBindingData:file=api%2F%40ohos.app.form.formBindingData.d.ts:export=default%3AformBindingData:decl=namespace%3AformBindingData:member=function%3AcreateFormBindingData:invoke=call:params=0%3A%3F%3AObject%20%7C%20string:ret=FormBindingData",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.app.form.formBindingData:file=api%2F%40ohos.app.form.formBindingData.d.ts:export=default%3AformBindingData:decl=namespace%3AformBindingData:member=function%3AcreateFormBindingData:invoke=call:params=0%3A%3F%3AObject%20%7C%20string:ret=FormBindingData",
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "api/@ohos.app.form.formBindingData.d.ts",
+          "line": 61
+        }
+      },
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "api/@ohos.app.form.formBindingData.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "formBindingData",
+            "methodName": "createFormBindingData",
+            "parameterTypes": [
+              "Object | string"
+            ],
+            "returnType": "FormBindingData",
+            "staticFlag": false
+          }
+        }
+      },
+      "kind": "invoke"
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.form:b95048a62f0a",
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.app.form.formBindingData:file=api%2F%40ohos.app.form.formBindingData.d.ts:export=default%3AformBindingData:decl=namespace%3AformBindingData:member=function%3AcreateFormBindingData:invoke=call:params=0%3A%3F%3AObject%20%7C%20string:ret=FormBindingData",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.app.form.formBindingData:file=api%2F%40ohos.app.form.formBindingData.d.ts:export=default%3AformBindingData:decl=namespace%3AformBindingData:member=function%3AcreateFormBindingData:invoke=call:params=0%3A%3F%3AObject%20%7C%20string:ret=FormBindingData",
+      "assetId": "asset.rule.kernel.transfers.form",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.form:9eee482d39bc"
+      ],
+      "semanticsFamily": "transfer",
+      "metadata": {
+        "enabled": true,
+        "category": "transfer",
+        "description": "formBindingData.createFormBindingData(obj): object/string payload becomes returned FormBindingData."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    }
+  ],
+  "effectTemplates": [
+    {
+      "id": "template:asset.rule.kernel.transfers.form:9eee482d39bc",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    }
+  ],
+  "provenance": {
+    "source": "builtin",
+    "evidenceLocations": [
+      {
+        "file": "api/@ohos.app.form.formBindingData.d.ts"
+      }
+    ]
+  }
+}

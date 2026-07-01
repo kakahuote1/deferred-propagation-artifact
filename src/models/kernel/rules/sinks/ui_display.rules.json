@@ -1,0 +1,212 @@
+{
+  "id": "asset.rule.kernel.sinks.ui_display",
+  "plane": "rule",
+  "status": "official",
+  "surfaces": [
+    {
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions:ret=Promise%3CShowDialogSuccessResponse%3E",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions:ret=Promise%3CShowDialogSuccessResponse%3E",
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "api/@ohos.promptAction.d.ts",
+          "line": 2333
+        }
+      },
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "api/@ohos.promptAction.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "promptAction",
+            "methodName": "showDialog",
+            "parameterTypes": [
+              "ShowDialogOptions"
+            ],
+            "returnType": "Promise<ShowDialogSuccessResponse>",
+            "staticFlag": false
+          }
+        }
+      },
+      "kind": "invoke"
+    },
+    {
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions%2C1%3AAsyncCallback%3CShowDialogSuccessResponse%3E:ret=void",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions%2C1%3AAsyncCallback%3CShowDialogSuccessResponse%3E:ret=void",
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "api/@ohos.promptAction.d.ts",
+          "line": 2287
+        }
+      },
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "api/@ohos.promptAction.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "promptAction",
+            "methodName": "showDialog",
+            "parameterTypes": [
+              "ShowDialogOptions",
+              "AsyncCallback<ShowDialogSuccessResponse>"
+            ],
+            "returnType": "void",
+            "staticFlag": false
+          }
+        }
+      },
+      "kind": "invoke"
+    },
+    {
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowToast:invoke=call:params=0%3AShowToastOptions:ret=void",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowToast:invoke=call:params=0%3AShowToastOptions:ret=void",
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "api/@ohos.promptAction.d.ts",
+          "line": 2205
+        }
+      },
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "api/@ohos.promptAction.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "promptAction",
+            "methodName": "showToast",
+            "parameterTypes": [
+              "ShowToastOptions"
+            ],
+            "returnType": "void",
+            "staticFlag": false
+          }
+        }
+      },
+      "kind": "invoke"
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "binding:asset.rule.kernel.sinks.ui_display:40c5ad567d64",
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowToast:invoke=call:params=0%3AShowToastOptions:ret=void",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowToast:invoke=call:params=0%3AShowToastOptions:ret=void",
+      "assetId": "asset.rule.kernel.sinks.ui_display",
+      "plane": "rule",
+      "role": "sink",
+      "endpoint": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.sinks.ui_display:75edb5b75187"
+      ],
+      "semanticsFamily": "arkui-display-sink",
+      "metadata": {
+        "enabled": true,
+        "category": "arkui-display-sink"
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.sinks.ui_display:b1cecb470a52",
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions%2C1%3AAsyncCallback%3CShowDialogSuccessResponse%3E:ret=void",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions%2C1%3AAsyncCallback%3CShowDialogSuccessResponse%3E:ret=void",
+      "assetId": "asset.rule.kernel.sinks.ui_display",
+      "plane": "rule",
+      "role": "sink",
+      "endpoint": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.sinks.ui_display:5254bedf7e17"
+      ],
+      "semanticsFamily": "arkui-display-sink",
+      "metadata": {
+        "enabled": true,
+        "category": "arkui-display-sink"
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.sinks.ui_display:fd7477a9b37a",
+      "surfaceId": "surface:api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions:ret=Promise%3CShowDialogSuccessResponse%3E",
+      "canonicalApiId": "api:official:openharmony:module=%40ohos.promptAction:file=api%2F%40ohos.promptAction.d.ts:export=default%3ApromptAction:decl=namespace%3ApromptAction:member=function%3AshowDialog:invoke=call:params=0%3AShowDialogOptions:ret=Promise%3CShowDialogSuccessResponse%3E",
+      "assetId": "asset.rule.kernel.sinks.ui_display",
+      "plane": "rule",
+      "role": "sink",
+      "endpoint": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.sinks.ui_display:7e0c490eda60"
+      ],
+      "semanticsFamily": "arkui-display-sink",
+      "metadata": {
+        "enabled": true,
+        "category": "arkui-display-sink"
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    }
+  ],
+  "effectTemplates": [
+    {
+      "id": "template:asset.rule.kernel.sinks.ui_display:5254bedf7e17",
+      "confidence": "certain",
+      "kind": "rule.sink",
+      "value": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "sinkKind": "arkui-display-sink"
+    },
+    {
+      "id": "template:asset.rule.kernel.sinks.ui_display:75edb5b75187",
+      "confidence": "certain",
+      "kind": "rule.sink",
+      "value": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "sinkKind": "arkui-display-sink"
+    },
+    {
+      "id": "template:asset.rule.kernel.sinks.ui_display:7e0c490eda60",
+      "confidence": "certain",
+      "kind": "rule.sink",
+      "value": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "sinkKind": "arkui-display-sink"
+    }
+  ],
+  "provenance": {
+    "source": "builtin",
+    "evidenceLocations": [
+      {
+        "file": "api/@ohos.promptAction.d.ts"
+      }
+    ]
+  }
+}

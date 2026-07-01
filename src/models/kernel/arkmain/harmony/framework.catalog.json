@@ -1,0 +1,525 @@
+{
+  "id": "arkmain.harmony.framework_catalog",
+  "kind": "arkmain.framework-catalog",
+  "status": "official",
+  "description": "Built-in Harmony ArkMain framework catalog.",
+  "reactiveAnchorEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "build"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "aboutToAppear"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onPageShow"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "render"
+      }
+    }
+  ],
+  "abilityBaseEntries": [
+    {
+      "match": {
+        "kind": "class",
+        "exact": "Ability"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "UIAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "ExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "UiExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "UIExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "FormExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "ServiceExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "BackupExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "InputMethodExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "WorkSchedulerExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "AbilityStage"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "DriverExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "AutoFillExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "VpnExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "FenceExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "PrintExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "PhotoEditorExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "UIServiceExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "AppServiceExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "ShareExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "ActionExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "EmbeddableUIAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "EmbeddedUIExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "MediaControlExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "UserAuthExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "FormEditExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "ChildProcess"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "InsightIntentExecutor"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "LiveFormExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "AccessibilityExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "WindowExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "StaticSubscriberExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "DistributedExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "EnterpriseAdminExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "FaultLogExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "WallpaperExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "DataShareExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "SelectionExtensionAbility"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "AdsServiceExtensionAbility"
+      }
+    }
+  ],
+  "abilityHandoffTargetEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onNewWant"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onAcceptWant"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onAcceptWantAsync"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onNewProcessRequest"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onNewProcessRequestAsync"
+      }
+    }
+  ],
+  "pageEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "build"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "aboutToAppear"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "aboutToDisappear"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onPageShow"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onPageHide"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onBackPress"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "pageTransition"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onDidBuild"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "render"
+      }
+    }
+  ],
+  "routerOwnerEntries": [
+    {
+      "match": {
+        "kind": "class",
+        "exact": "Router"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "NavPathStack"
+      }
+    }
+  ],
+  "navigationSourceOwnerEntries": [
+    {
+      "match": {
+        "kind": "class",
+        "exact": "Router"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "NavPathStack"
+      }
+    },
+    {
+      "match": {
+        "kind": "class",
+        "exact": "NavDestination"
+      }
+    }
+  ],
+  "routerSourceEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "pushUrl"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "replaceUrl"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "pushNamedRoute"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "pushPath"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "pushPathByName"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "replacePath"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "trigger"
+      }
+    }
+  ],
+  "routerTriggerEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "getParams"
+      }
+    }
+  ],
+  "watchLikeDecoratorEntries": [
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "Watch"
+      }
+    },
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "Monitor"
+      }
+    }
+  ],
+  "ownerDecoratorEntries": [
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "Entry"
+      }
+    },
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "Component"
+      }
+    },
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "ComponentV2"
+      }
+    },
+    {
+      "match": {
+        "kind": "decorator",
+        "exact": "CustomDialog"
+      }
+    }
+  ],
+  "builderDecoratorEntry": {
+    "match": {
+      "kind": "decorator",
+      "exact": "Builder"
+    }
+  },
+  "deferredContinuationEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "then"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "catch"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "finally"
+      }
+    }
+  ],
+  "frameworkCallbackEntries": [
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onRemoteRequest"
+      }
+    },
+    {
+      "match": {
+        "kind": "method",
+        "exact": "onRemoteMessageRequest"
+      }
+    }
+  ],
+  "provenance": {
+    "source": "builtin"
+  }
+}

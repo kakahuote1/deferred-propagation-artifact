@@ -1,0 +1,1571 @@
+{
+  "id": "arkmain.harmony.lifecycle_contracts",
+  "kind": "arkmain.lifecycle-contracts",
+  "status": "official",
+  "description": "Built-in Harmony ArkMain lifecycle contract catalog.",
+  "overrideEntryContracts": [
+    {
+      "ownerKind": "ability",
+      "kind": "ability_lifecycle",
+      "entryFamily": "ability_lifecycle",
+      "entryShape": "override_slot",
+      "reasonPrefix": "Ability lifecycle override slot",
+      "phaseEntries": {
+        "bootstrap": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAddForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRestore"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRestoreEx"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWorkStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSessionCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageRestore"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWillForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDidForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onInit"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFillRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartContentEditing"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onData"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowWillCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowDidCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFenceStatusChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartDiscoverPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConnectPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartPrintJob"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIAbilityForegroundMode"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIAbilityBackgroundMode"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIExtensionAbility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInServiceExtensionAbility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLiveFormCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityConnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAdminEnabled"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowReady"
+            }
+          }
+        ],
+        "composition": [],
+        "interaction": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackup"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackupEx"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onUpdateForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcquireFormState"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcquireFormData"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCastToNormalForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFormEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onShareForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onVisibilityChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onChangeFormVisibility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConfigurationUpdate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onContinue"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDump"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveState"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveStateAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onShare"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCollaborate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onMemoryLevel"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onUpdateRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFormLocationChanged"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSizeChanged"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onReconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequestPrinterCapability"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequestPreview"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCancelPrintJob"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStopDiscoverPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnectPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onProcess"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityEventInfo"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKeyEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityKeyEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onReceiveEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWallpaperChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFaultReportReady"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLoadAd"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLoadAdWithMultiSlots"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBundleAdded"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBundleRemoved"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStop"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSystemUpdate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountAdded"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountSwitched"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountRemoved"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKioskModeEntering"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKioskModeExiting"
+            }
+          }
+        ],
+        "reactive_handoff": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewWant"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWant"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWantAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequestAsync"
+            }
+          }
+        ],
+        "teardown": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWillBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDidBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnectAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWorkStop"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageWillDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDestroyAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRemoveForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSessionDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackPressed"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareToTerminate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareToTerminateAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareTermination"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareTerminationAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLiveFormDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRelease"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAdminDisabled"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityDisconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStop"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "ownerKind": "stage",
+      "kind": "stage_lifecycle",
+      "entryFamily": "stage_lifecycle",
+      "entryShape": "override_slot",
+      "reasonPrefix": "Stage lifecycle override slot",
+      "phaseEntries": {
+        "bootstrap": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCreate"
+            }
+          }
+        ],
+        "composition": [],
+        "interaction": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onMemoryLevel"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConfigurationUpdate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStop"
+            }
+          }
+        ],
+        "reactive_handoff": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWant"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWantAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequestAsync"
+            }
+          }
+        ],
+        "teardown": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDestroy"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "ownerKind": "extension",
+      "kind": "extension_lifecycle",
+      "entryFamily": "extension_lifecycle",
+      "entryShape": "override_slot",
+      "reasonPrefix": "Extension lifecycle override slot",
+      "phaseEntries": {
+        "bootstrap": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAddForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRestore"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRestoreEx"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWorkStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSessionCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageRestore"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWillForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDidForeground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onInit"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFillRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartContentEditing"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onData"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowWillCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowDidCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFenceStatusChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartDiscoverPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConnectPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStartPrintJob"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIAbilityForegroundMode"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIAbilityBackgroundMode"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInUIExtensionAbility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onExecuteInServiceExtensionAbility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLiveFormCreate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityConnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAdminEnabled"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowReady"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAttachedToEngine"
+            }
+          }
+        ],
+        "composition": [],
+        "interaction": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackup"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackupEx"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onUpdateForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcquireFormState"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcquireFormData"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCastToNormalForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFormEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onShareForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onVisibilityChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onChangeFormVisibility"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onConfigurationUpdate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onContinue"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDump"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveState"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveStateAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onShare"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCollaborate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onMemoryLevel"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSaveRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onUpdateRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFormLocationChanged"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSizeChanged"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onReconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequestPrinterCapability"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRequestPreview"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onCancelPrintJob"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStopDiscoverPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnectPrinter"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onProcess"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityEventInfo"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKeyEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityKeyEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onReceiveEvent"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWallpaperChange"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onFaultReportReady"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLoadAd"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLoadAdWithMultiSlots"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBundleAdded"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBundleRemoved"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStart"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAppStop"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSystemUpdate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountAdded"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountSwitched"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccountRemoved"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKioskModeEntering"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onKioskModeExiting"
+            }
+          }
+        ],
+        "reactive_handoff": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewWant"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWant"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAcceptWantAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequest"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onNewProcessRequestAsync"
+            }
+          }
+        ],
+        "teardown": [
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWillBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDidBackground"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDisconnectAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWorkStop"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageWillDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onWindowStageDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDestroyAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRemoveForm"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onSessionDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onBackPressed"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareToTerminate"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareToTerminateAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareTermination"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onPrepareTerminationAsync"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onLiveFormDestroy"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onRelease"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAdminDisabled"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onAccessibilityDisconnect"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onStop"
+            }
+          },
+          {
+            "match": {
+              "kind": "method",
+              "exact": "onDetachedFromEngine"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "declarationEntryContracts": [
+    {
+      "ownerKind": "component",
+      "phase": "composition",
+      "kind": "page_build",
+      "entryFamily": "page_build",
+      "entryShape": "declaration_owner_slot",
+      "reasonPrefix": "Component lifecycle contract composition",
+      "entries": [
+        {
+          "match": {
+            "kind": "method",
+            "exact": "build"
+          }
+        }
+      ]
+    },
+    {
+      "ownerKind": "component",
+      "phase": "composition",
+      "kind": "page_lifecycle",
+      "entryFamily": "page_lifecycle",
+      "entryShape": "declaration_owner_slot",
+      "reasonPrefix": "Component lifecycle contract composition",
+      "entries": [
+        {
+          "match": {
+            "kind": "method",
+            "exact": "aboutToAppear"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "aboutToReuse"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onPageShow"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onWillApplyTheme"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onDidBuild"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onNewParam"
+          }
+        }
+      ]
+    },
+    {
+      "ownerKind": "component",
+      "phase": "interaction",
+      "kind": "page_lifecycle",
+      "entryFamily": "page_lifecycle",
+      "entryShape": "declaration_owner_slot",
+      "reasonPrefix": "Component lifecycle contract interaction",
+      "entries": [
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onBackPress"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "pageTransition"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onLayout"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onMeasure"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onPlaceChildren"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onMeasureSize"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onFormRecycle"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onFormRecover"
+          }
+        }
+      ]
+    },
+    {
+      "ownerKind": "component",
+      "phase": "teardown",
+      "kind": "page_lifecycle",
+      "entryFamily": "page_lifecycle",
+      "entryShape": "declaration_owner_slot",
+      "reasonPrefix": "Component lifecycle contract teardown",
+      "entries": [
+        {
+          "match": {
+            "kind": "method",
+            "exact": "aboutToDisappear"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "aboutToRecycle"
+          }
+        },
+        {
+          "match": {
+            "kind": "method",
+            "exact": "onPageHide"
+          }
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "source": "builtin"
+  }
+}

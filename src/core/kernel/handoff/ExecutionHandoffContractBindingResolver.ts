@@ -1,0 +1,1486 @@
+import { Scene } from "../../../../arkanalyzer/out/src/Scene";
+import { CallGraph } from "../../../../arkanalyzer/out/src/callgraph/model/CallGraph";
+import { Pag } from "../../../../arkanalyzer/out/src/callgraph/pointerAnalysis/Pag";
+import { ArkAssignStmt, ArkReturnStmt } from "../../../../arkanalyzer/out/src/core/base/Stmt";
+import { Local } from "../../../../arkanalyzer/out/src/core/base/Local";
+import { ArkInstanceFieldRef, ArkParameterRef, ArkThisRef, ClosureFieldRef } from "../../../../arkanalyzer/out/src/core/base/Ref";
+import { ArkAwaitExpr, ArkInstanceInvokeExpr, ArkPtrInvokeExpr, ArkStaticInvokeExpr } from "../../../../arkanalyzer/out/src/core/base/Expr";
+import { CallEdgeType } from "../context/TaintContext";
+import { resolveExistingPagNodes } from "../contracts/PagNodeResolution";
+import {
+    collectParameterAssignStmts,
+    resolveCalleeCandidates,
+    resolveInvokeMethodName,
+    resolveMethodsFromCallable,
+} from "../../substrate/queries/CalleeResolver";
+import { collectOrdinaryTaintPreservingSourceLocals } from "../ordinary/OrdinaryLanguagePropagation";
+import {
+    normalizeDeclarativeFieldTriggerToken,
+    resolveQualifiedDeclarativeFieldTriggerToken,
+} from "../model/DeclarativeFieldTriggerSemantics";
+import type {
+    ExecutionHandoffContractRecord,
+    ExecutionHandoffResolvedEdgeBinding,
+} from "./ExecutionHandoffContract";
+import {
+    assertExecutionHandoffBudget,
+    ExecutionHandoffBuildBudget,
+} from "./ExecutionHandoffBudget";
+
+const MAX_PROMISE_SETTLEMENT_TRACE_DEPTH = 8;
+const MAX_PROMISE_SETTLEMENT_VISITED = 256;
+const ENV_CLOSURE_FIELD_READ_CACHE = new WeakMap<any, Array<{ callbackLocal: Local; fieldName: string; anchorStmt: ArkAssignStmt }>>();
+const ENV_FREE_LOCAL_READ_CACHE = new WeakMap<any, Array<{ callbackLocal: Local; localName: string; anchorStmt: any }>>();
+const ENV_DIRECT_THIS_FIELD_READ_CACHE = new WeakMap<any, boolean>();
+const ENV_METHOD_SOURCE_NODE_IDS_BY_PAG = new WeakMap<Pag, WeakMap<any, Map<string, number[]>>>();
+
+export function buildExecutionHandoffContractEdgeBindings(
+    scene: Scene,
+    _cg: CallGraph,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+    budget?: ExecutionHandoffBuildBudget,
+): ExecutionHandoffResolvedEdgeBinding[] {
+    const bindings: ExecutionHandoffResolvedEdgeBinding[] = [];
+    assertExecutionHandoffBudget(budget, "edge_bindings.activation");
+    bindings.push(...resolveActivationBindings(pag, contract));
+    assertExecutionHandoffBudget(budget, "edge_bindings.payload");
+    bindings.push(...resolvePayloadBindings(scene, pag, contract));
+    assertExecutionHandoffBudget(budget, "edge_bindings.env");
+    bindings.push(...resolveEnvBindings(scene, pag, contract));
+    assertExecutionHandoffBudget(budget, "edge_bindings.completion");
+    bindings.push(...resolveCompletionBindings(scene, pag, contract));
+    assertExecutionHandoffBudget(budget, "edge_bindings.filter");
+    return bindings.filter(binding => binding.sourceNodeIds.length > 0 && binding.targetNodeIds.length > 0);
+}
+
+function resolveActivationBindings(
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): ExecutionHandoffResolvedEdgeBinding[] {
+    const sourceNodeIds = collectActivationSourceNodeIds(pag, contract);
+    const targetNodeIds = collectActivationTargetNodeIds(pag, contract.unit);
+    if (sourceNodeIds.length === 0 || targetNodeIds.length === 0) {
+        return [];
+    }
+    return [{
+        edgeType: CallEdgeType.CALL,
+        sourceNodeIds,
+        targetNodeIds,
+    }];
+}
+
+function resolvePayloadBindings(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): ExecutionHandoffResolvedEdgeBinding[] {
+    if (contract.ports.payload !== "payload+") {
+        return [];
+    }
+
+    const explicitSourceNodes = collectPayloadSourceNodeIds(scene, pag, contract);
+    if (explicitSourceNodes.length === 0) {
+        return [];
+    }
+
+    const paramStmts = collectParameterAssignStmts(contract.unit);
+    if (paramStmts.length === 0) {
+        return [];
+    }
+
+    const bindings: ExecutionHandoffResolvedEdgeBinding[] = [];
+    for (const paramStmt of paramStmts) {
+        const paramLocal = paramStmt.getLeftOp?.();
+        if (!(paramLocal instanceof Local)) continue;
+        if ((paramLocal.getName?.() || "").startsWith("%closures")) continue;
+        const rightOp = paramStmt.getRightOp?.();
+        if (!(rightOp instanceof ArkParameterRef)) continue;
+        const targetNodeIds = collectPayloadTargetNodeIds(pag, paramLocal, paramStmt);
+        if (targetNodeIds.length === 0) continue;
+        bindings.push({
+            edgeType: CallEdgeType.CALL,
+            sourceNodeIds: explicitSourceNodes,
+            targetNodeIds,
+        });
+    }
+
+    return bindings;
+}
+
+function collectPayloadTargetNodeIds(
+    pag: Pag,
+    paramLocal: Local,
+    paramStmt: ArkAssignStmt,
+): number[] {
+    const existingNodeIds = collectNodeIds(resolveExistingPagNodes(pag, paramLocal, paramStmt));
+    if (existingNodeIds.length > 0) {
+        return existingNodeIds;
+    }
+    const getOrNewNode = (pag as any).getOrNewNode;
+    if (typeof getOrNewNode !== "function") {
+        return [];
+    }
+    // The handoff contract has already proven this callback unit and payload parameter.
+    // Materialize only that exact parameter endpoint; do not create a generic recovery node.
+    const node = getOrNewNode.call(pag, 0, paramLocal, paramStmt);
+    const nodeId = node?.getID?.();
+    return typeof nodeId === "number" ? [nodeId] : [];
+}
+
+function collectPayloadSourceNodeIds(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): number[] {
+    const explicitSourceNodeIds = resolveExplicitSourceSelectorNodeIds(pag, contract, contract.payloadSource);
+    if (explicitSourceNodeIds.length > 0) {
+        return explicitSourceNodeIds;
+    }
+    if (isPromiseSettlementActivation(contract.activation)) {
+        const promiseSourceNodeIds = collectPromiseSettlementSourceNodeIds(scene, pag, contract);
+        if (promiseSourceNodeIds.length > 0) {
+            return promiseSourceNodeIds;
+        }
+    }
+    return collectInvokeBaseNodeIds(pag, contract);
+}
+
+function collectPromiseSettlementSourceNodeIds(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): number[] {
+    return collectPromiseSettlementSourceNodeIdsForActivation(
+        scene,
+        pag,
+        contract,
+        contract.activation,
+    );
+}
+
+function collectPromiseSettlementSourceNodeIdsForActivation(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+    activation: ExecutionHandoffContractRecord["activation"],
+): number[] {
+    const baseValue = contract.invokeExpr?.getBase?.();
+    if (!(baseValue instanceof Local)) {
+        return [];
+    }
+    return resolvePromiseSettlementSourceNodeIdsFromLocal(
+        scene,
+        pag,
+        baseValue,
+        contract.stmt,
+        activation,
+        new Set<string>(),
+    );
+}
+
+function resolvePromiseSettlementSourceNodeIdsFromLocal(
+    scene: Scene,
+    pag: Pag,
+    local: Local,
+    anchorStmt: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+    visited: Set<string>,
+    depth: number = 0,
+): number[] {
+    const currentLocalNodeIds = (): number[] => collectNodeIds(pag.getNodesByValue(local));
+    if (depth > MAX_PROMISE_SETTLEMENT_TRACE_DEPTH || visited.size > MAX_PROMISE_SETTLEMENT_VISITED) {
+        return currentLocalNodeIds();
+    }
+    const localKey = `local:${resolveDeclaringMethodSignature(local)}#${safeLocalName(local)}#${safeStmtText(safeGetDeclaringStmt(local))}`;
+    if (visited.has(localKey)) {
+        return currentLocalNodeIds();
+    }
+    visited.add(localKey);
+
+    const ownerMethod = safeGetDeclaringMethodFromStmt(anchorStmt)
+        || safeGetDeclaringMethodFromStmt(safeGetDeclaringStmt(local));
+    const declaringStmt = resolveLatestAssignStmtForLocal(ownerMethod, local, anchorStmt)
+        || safeGetDeclaringStmt(local);
+    if (declaringStmt instanceof ArkAssignStmt && declaringStmt.getLeftOp?.() === local) {
+        const rightOp = declaringStmt.getRightOp?.();
+        if (isPromiseResolveRejectInvoke(rightOp, activation)) {
+            return collectInvokeArgNodeIds(pag, rightOp, declaringStmt);
+        }
+        if (isDeferredContinuationInvoke(rightOp)) {
+            return collectNodeIds(resolveExistingPagNodes(pag, local, declaringStmt));
+        }
+        if (isPromiseProducingInvoke(rightOp)) {
+            const calleeSourceNodeIds = resolvePromiseSettlementSourceNodeIdsFromInvoke(
+                scene,
+                pag,
+                rightOp,
+                activation,
+                visited,
+                depth + 1,
+            );
+            if (calleeSourceNodeIds.length > 0) {
+                return calleeSourceNodeIds;
+            }
+        }
+        if (rightOp instanceof Local) {
+            return resolvePromiseSettlementSourceNodeIdsFromLocal(
+                scene,
+                pag,
+                rightOp,
+                declaringStmt,
+                activation,
+                visited,
+                depth + 1,
+            );
+        }
+    }
+
+    return currentLocalNodeIds();
+}
+
+function resolvePromiseSettlementSourceNodeIdsFromInvoke(
+    scene: Scene,
+    pag: Pag,
+    invokeExpr: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+    visited: Set<string>,
+    depth: number = 0,
+): number[] {
+    if (depth > MAX_PROMISE_SETTLEMENT_TRACE_DEPTH || visited.size > MAX_PROMISE_SETTLEMENT_VISITED) {
+        return [];
+    }
+    const invokeKey = `invoke:${safeInvokeSignatureText(invokeExpr)}#${safeValueText(invokeExpr)}`;
+    if (visited.has(invokeKey)) {
+        return [];
+    }
+    visited.add(invokeKey);
+    const sourceNodeIds: number[] = [];
+    for (const resolved of resolveCalleeCandidates(scene, invokeExpr, {
+        maxNameMatchCandidates: 4,
+        maxCallableResolveDepth: 4,
+    })) {
+        sourceNodeIds.push(
+            ...collectPromiseSettlementSourceNodeIdsFromMethod(
+                scene,
+                pag,
+                resolved.method,
+                activation,
+                visited,
+                depth + 1,
+            ),
+        );
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+export function resolvePromiseFulfillmentSourceNodeIdsFromInvoke(
+    scene: Scene,
+    pag: Pag,
+    invokeExpr: any,
+): number[] {
+    return resolvePromiseSettlementSourceNodeIdsFromInvoke(
+        scene,
+        pag,
+        invokeExpr,
+        "settle(fulfilled)",
+        new Set<string>(),
+    );
+}
+
+export function resolvePromiseRejectionSourceNodeIdsFromInvoke(
+    scene: Scene,
+    pag: Pag,
+    invokeExpr: any,
+): number[] {
+    return resolvePromiseSettlementSourceNodeIdsFromInvoke(
+        scene,
+        pag,
+        invokeExpr,
+        "settle(rejected)",
+        new Set<string>(),
+    );
+}
+
+function collectPromiseSettlementSourceNodeIdsFromMethod(
+    scene: Scene,
+    pag: Pag,
+    method: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+    visited: Set<string>,
+    depth: number = 0,
+): number[] {
+    if (depth > MAX_PROMISE_SETTLEMENT_TRACE_DEPTH || visited.size > MAX_PROMISE_SETTLEMENT_VISITED) {
+        return [];
+    }
+    const methodKey = `method:${safeMethodSignatureText(method)}`;
+    if (visited.has(methodKey)) {
+        return [];
+    }
+    visited.add(methodKey);
+    const sourceNodeIds: number[] = [];
+    for (const retStmt of collectMethodReturnStmts(method)) {
+        if (!(retStmt instanceof ArkReturnStmt)) continue;
+        const retValue = retStmt.getOp?.();
+        if (!(retValue instanceof Local)) continue;
+        sourceNodeIds.push(
+            ...resolvePromiseSettlementSourceNodeIdsFromReturnedLocal(
+                scene,
+                pag,
+                method,
+                retValue,
+                activation,
+                visited,
+                depth + 1,
+            ),
+        );
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function resolvePromiseSettlementSourceNodeIdsFromReturnedLocal(
+    scene: Scene,
+    pag: Pag,
+    method: any,
+    local: Local,
+    activation: ExecutionHandoffContractRecord["activation"],
+    visited: Set<string>,
+    depth: number = 0,
+): number[] {
+    if (depth > MAX_PROMISE_SETTLEMENT_TRACE_DEPTH || visited.size > MAX_PROMISE_SETTLEMENT_VISITED) {
+        return collectNodeIds(
+            resolveExistingPagNodes(pag, local, firstMethodStmt(method)),
+        );
+    }
+    const declaringStmt = resolveLatestAssignStmtForLocal(method, local)
+        || safeGetDeclaringStmt(local);
+    if (declaringStmt instanceof ArkAssignStmt && declaringStmt.getLeftOp?.() === local) {
+        const rightOp = declaringStmt.getRightOp?.();
+        if (isPromiseResolveRejectInvoke(rightOp, activation)) {
+            return collectInvokeArgNodeIds(pag, rightOp, declaringStmt);
+        }
+        if (isPromiseConstructorInvoke(rightOp)) {
+            const executorSourceNodeIds = collectPromiseConstructorSettlementSourceNodeIds(
+                scene,
+                pag,
+                rightOp,
+                activation,
+            );
+            if (executorSourceNodeIds.length > 0) {
+                return executorSourceNodeIds;
+            }
+        }
+        if (isPromiseProducingInvoke(rightOp)) {
+            const nestedSourceNodeIds = resolvePromiseSettlementSourceNodeIdsFromInvoke(
+                scene,
+                pag,
+                rightOp,
+                activation,
+                visited,
+                depth + 1,
+            );
+            if (nestedSourceNodeIds.length > 0) {
+                return nestedSourceNodeIds;
+            }
+        }
+        if (rightOp instanceof Local) {
+            return resolvePromiseSettlementSourceNodeIdsFromLocal(
+                scene,
+                pag,
+                rightOp,
+                declaringStmt,
+                activation,
+                visited,
+                depth + 1,
+            );
+        }
+    }
+
+    return collectNodeIds(
+        resolveExistingPagNodes(pag, local, firstMethodStmt(method) || declaringStmt),
+    );
+}
+
+function collectPromiseConstructorSettlementSourceNodeIds(
+    scene: Scene,
+    pag: Pag,
+    constructorInvoke: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+): number[] {
+    const invokeArgs = constructorInvoke?.getArgs?.() || [];
+    const sourceNodeIds: number[] = [];
+    for (const arg of invokeArgs) {
+        for (const executorMethod of resolveMethodsFromCallable(scene, arg, { maxCallableResolveDepth: 4 })) {
+            sourceNodeIds.push(
+                ...collectPromiseSettlementArgNodeIdsFromExecutor(
+                    pag,
+                    executorMethod,
+                    activation,
+                ),
+            );
+        }
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectPromiseSettlementArgNodeIdsFromExecutor(
+    pag: Pag,
+    executorMethod: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+): number[] {
+    const cfg = executorMethod.getCfg?.();
+    if (!cfg) return [];
+    const sourceNodeIds: number[] = [];
+    for (const stmt of cfg.getStmts()) {
+        const invokeExpr = stmt?.getInvokeExpr?.();
+        if (!invokeExpr || !matchesPromiseSettlementInvoke(invokeExpr, activation)) continue;
+        sourceNodeIds.push(...collectInvokeArgNodeIds(pag, invokeExpr, stmt));
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function matchesPromiseSettlementInvoke(
+    invokeExpr: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+): boolean {
+    const methodName = resolveInvokeMethodName(invokeExpr);
+    if (!methodName) return false;
+    if (activation === "settle(fulfilled)") return methodName === "resolve";
+    if (activation === "settle(rejected)") return methodName === "reject";
+    return methodName === "resolve" || methodName === "reject";
+}
+
+function isPromiseResolveRejectInvoke(
+    invokeExpr: any,
+    activation: ExecutionHandoffContractRecord["activation"],
+): boolean {
+    if (!(invokeExpr instanceof ArkStaticInvokeExpr || invokeExpr instanceof ArkInstanceInvokeExpr || invokeExpr instanceof ArkPtrInvokeExpr)) {
+        return false;
+    }
+    const methodName = resolveInvokeMethodName(invokeExpr);
+    if (activation === "settle(fulfilled)") {
+        return methodName === "resolve" && isPromiseLikeInvokeText(invokeExpr);
+    }
+    if (activation === "settle(rejected)") {
+        return methodName === "reject" && isPromiseLikeInvokeText(invokeExpr);
+    }
+    return (methodName === "resolve" || methodName === "reject") && isPromiseLikeInvokeText(invokeExpr);
+}
+
+function isPromiseConstructorInvoke(invokeExpr: any): boolean {
+    if (!(invokeExpr instanceof ArkInstanceInvokeExpr || invokeExpr instanceof ArkPtrInvokeExpr)) {
+        return false;
+    }
+    const methodName = resolveInvokeMethodName(invokeExpr);
+    if (methodName !== "constructor") return false;
+    const sigText = safeInvokeSignatureText(invokeExpr);
+    const baseValue = invokeExpr instanceof ArkInstanceInvokeExpr ? invokeExpr.getBase?.() : undefined;
+    return sigText.includes("Promise.constructor") || isPromiseReceiverText(baseValue);
+}
+
+function isPromiseProducingInvoke(invokeExpr: any): boolean {
+    return invokeExpr instanceof ArkStaticInvokeExpr
+        || invokeExpr instanceof ArkInstanceInvokeExpr
+        || invokeExpr instanceof ArkPtrInvokeExpr;
+}
+
+function isDeferredContinuationInvoke(invokeExpr: any): boolean {
+    if (!(invokeExpr instanceof ArkInstanceInvokeExpr || invokeExpr instanceof ArkPtrInvokeExpr)) {
+        return false;
+    }
+    const methodName = resolveInvokeMethodName(invokeExpr);
+    if (methodName === "then" || methodName === "catch" || methodName === "finally") {
+        return true;
+    }
+    const sigText = safeInvokeSignatureText(invokeExpr);
+    return sigText.includes(".then()") || sigText.includes(".catch()") || sigText.includes(".finally()");
+}
+
+function isPromiseSettlementActivation(
+    activation: ExecutionHandoffContractRecord["activation"],
+): boolean {
+    return activation === "settle(fulfilled)"
+        || activation === "settle(rejected)"
+        || activation === "settle(any)";
+}
+
+function isPromiseLikeInvokeText(invokeExpr: any): boolean {
+    const sigText = safeInvokeSignatureText(invokeExpr);
+    const baseValue = invokeExpr?.getBase?.();
+    return sigText.includes("Promise.resolve")
+        || sigText.includes("Promise.reject")
+        || isPromiseReceiverText(baseValue);
+}
+
+function isPromiseReceiverText(value: any): boolean {
+    const typeText = safeValueTypeText(value);
+    const valueText = safeValueText(value);
+    return [typeText, valueText].some(text => {
+        const normalized = String(text || "").trim();
+        return normalized === "Promise" || normalized.toLowerCase() === "promise";
+    });
+}
+
+function collectInvokeArgNodeIds(
+    pag: Pag,
+    invokeExpr: any,
+    anchorStmt: any,
+): number[] {
+    const sourceNodeIds: number[] = [];
+    for (const arg of invokeExpr?.getArgs?.() || []) {
+        sourceNodeIds.push(...collectNodeIds(resolveExistingPagNodes(pag, arg, anchorStmt)));
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function resolveDeclaringMethodSignature(value: Local): string {
+    return safeMethodSignatureText(safeGetDeclaringMethodFromStmt(safeGetDeclaringStmt(value)));
+}
+
+function safeGetDeclaringStmt(local: Local): any {
+    try {
+        return local.getDeclaringStmt?.();
+    } catch {
+        return undefined;
+    }
+}
+
+function safeGetDeclaringMethodFromStmt(stmt: any): any {
+    try {
+        return stmt?.getCfg?.()?.getDeclaringMethod?.();
+    } catch {
+        return undefined;
+    }
+}
+
+function safeLocalName(local: Local): string {
+    try {
+        return local.getName?.() || "";
+    } catch {
+        return "";
+    }
+}
+
+function safeStmtText(stmt: any): string {
+    return safeValueText(stmt);
+}
+
+function safeInvokeSignatureText(invokeExpr: any): string {
+    try {
+        return invokeExpr?.getMethodSignature?.()?.toString?.() || "";
+    } catch {
+        return "";
+    }
+}
+
+function safeMethodSignatureText(method: any): string {
+    try {
+        return method?.getSignature?.()?.toString?.() || "";
+    } catch {
+        return "";
+    }
+}
+
+function safeValueText(value: any): string {
+    try {
+        return String(value?.toString?.() || value || "");
+    } catch {
+        return "[unprintable]";
+    }
+}
+
+function safeValueTypeText(value: any): string {
+    try {
+        return value?.getType?.()?.toString?.() || "";
+    } catch {
+        return "";
+    }
+}
+
+function resolveEnvBindings(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): ExecutionHandoffResolvedEdgeBinding[] {
+    if (contract.ports.env !== "envIn" && contract.ports.env !== "envIO") {
+        return [];
+    }
+
+    const bindings: ExecutionHandoffResolvedEdgeBinding[] = [];
+    const sourceMethods = contract.sourceMethods.length > 0 ? contract.sourceMethods : [contract.caller];
+    const envSourceMethods = contract.envSourceMethods && contract.envSourceMethods.length > 0
+        ? contract.envSourceMethods
+        : sourceMethods;
+    const declarativeTargetField = resolveDeclarativeContractFieldToken(contract);
+
+    if (declarativeTargetField) {
+        const sourceNodeIds = dedupeNodeIds(
+            envSourceMethods.flatMap(method => collectMethodThisFieldWriteSourceNodeIds(pag, method, declarativeTargetField)),
+        );
+        const targetNodeIds = collectDirectThisFieldReadTargetNodeIds(pag, contract.unit, declarativeTargetField);
+        if (sourceNodeIds.length > 0 && targetNodeIds.length > 0) {
+            bindings.push({
+                edgeType: CallEdgeType.CALL,
+                sourceNodeIds,
+                targetNodeIds,
+            });
+        }
+    }
+
+    for (const mapping of collectClosureFieldReadMappingsCached(contract.unit)) {
+        let sourceNodeIds = isPromiseObserveContract(contract)
+            ? collectPromiseObserveEnvSourceNodeIds(scene, pag, contract, mapping.fieldName)
+            : [];
+        if (sourceNodeIds.length === 0) {
+            sourceNodeIds = dedupeNodeIds(
+                envSourceMethods.flatMap(method => collectMethodSourceNodeIdsByNameCached(pag, method, mapping.fieldName)),
+            );
+        }
+        const targetNodeIds = collectNodeIds(
+            resolveExistingPagNodes(pag, mapping.callbackLocal, mapping.anchorStmt),
+        );
+        if (sourceNodeIds.length === 0 || targetNodeIds.length === 0) continue;
+        bindings.push({
+            edgeType: CallEdgeType.CALL,
+            sourceNodeIds,
+            targetNodeIds,
+        });
+    }
+
+    for (const mapping of collectFreeLocalReadMappingsCached(contract.unit)) {
+        const sourceNodeIds = dedupeNodeIds(
+            envSourceMethods.flatMap(method => collectMethodSourceNodeIdsByNameCached(pag, method, mapping.localName)),
+        );
+        const targetNodeIds = collectNodeIds(
+            resolveExistingPagNodes(pag, mapping.callbackLocal, mapping.anchorStmt),
+        );
+        if (sourceNodeIds.length === 0 || targetNodeIds.length === 0) continue;
+        bindings.push({
+            edgeType: CallEdgeType.CALL,
+            sourceNodeIds,
+            targetNodeIds,
+        });
+    }
+
+    if (methodReadsDirectThisFieldCached(contract.unit)) {
+        const sourceNodeIds = dedupeNodeIds(
+            envSourceMethods.flatMap(method => collectThisCarrierNodeIds(pag, method, contract.stmt)),
+        );
+        const targetNodeIds = collectThisCarrierNodeIds(pag, contract.unit, firstMethodStmt(contract.unit), { materializeExact: true });
+        if (!declarativeTargetField && sourceNodeIds.length > 0 && targetNodeIds.length > 0) {
+            bindings.push({
+                edgeType: CallEdgeType.CALL,
+                sourceNodeIds,
+                targetNodeIds,
+            });
+        }
+    }
+
+    return bindings;
+}
+
+function resolveDeclarativeContractFieldToken(contract: ExecutionHandoffContractRecord): string | undefined {
+    const explicit = normalizeDeclarativeTriggerLabel(contract.declarativeTriggerLabel);
+    if (explicit) return explicit;
+    return resolveQualifiedDeclarativeFieldTriggerToken(contract.unit);
+}
+
+function normalizeDeclarativeTriggerLabel(label: string | undefined): string | undefined {
+    if (!label) return undefined;
+    const text = String(label).trim();
+    if (!text) return undefined;
+    const field = text.includes("#") ? text.slice(text.lastIndexOf("#") + 1) : text;
+    const normalized = normalizeDeclarativeFieldTriggerToken(field);
+    return isDeclarativeFieldNameToken(normalized) ? normalized : undefined;
+}
+
+function isDeclarativeFieldNameToken(value: string | undefined): value is string {
+    return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(String(value || ""));
+}
+
+function collectClosureFieldReadMappingsCached(
+    method: any,
+): Array<{ callbackLocal: Local; fieldName: string; anchorStmt: ArkAssignStmt }> {
+    const cached = ENV_CLOSURE_FIELD_READ_CACHE.get(method);
+    if (cached) return cached;
+    const mappings = collectClosureFieldReadMappings(method);
+    ENV_CLOSURE_FIELD_READ_CACHE.set(method, mappings);
+    return mappings;
+}
+
+function collectFreeLocalReadMappingsCached(
+    method: any,
+): Array<{ callbackLocal: Local; localName: string; anchorStmt: any }> {
+    const cached = ENV_FREE_LOCAL_READ_CACHE.get(method);
+    if (cached) return cached;
+    const mappings = collectFreeLocalReadMappings(method);
+    ENV_FREE_LOCAL_READ_CACHE.set(method, mappings);
+    return mappings;
+}
+
+function methodReadsDirectThisFieldCached(method: any): boolean {
+    const cached = ENV_DIRECT_THIS_FIELD_READ_CACHE.get(method);
+    if (cached !== undefined) return cached;
+    const result = methodReadsDirectThisField(method);
+    ENV_DIRECT_THIS_FIELD_READ_CACHE.set(method, result);
+    return result;
+}
+
+function collectMethodSourceNodeIdsByNameCached(
+    pag: Pag,
+    method: any,
+    localName: string,
+): number[] {
+    let byMethod = ENV_METHOD_SOURCE_NODE_IDS_BY_PAG.get(pag);
+    if (!byMethod) {
+        byMethod = new WeakMap<any, Map<string, number[]>>();
+        ENV_METHOD_SOURCE_NODE_IDS_BY_PAG.set(pag, byMethod);
+    }
+    let byName = byMethod.get(method);
+    if (!byName) {
+        byName = new Map<string, number[]>();
+        byMethod.set(method, byName);
+    }
+    const cached = byName.get(localName);
+    if (cached) return cached;
+    const result = collectMethodSourceNodeIdsByName(pag, method, localName);
+    byName.set(localName, result);
+    return result;
+}
+
+function isPromiseObserveContract(contract: ExecutionHandoffContractRecord): boolean {
+    return contract.semantics.continuationRole === "observe"
+        && isPromiseSettlementActivation(contract.activation);
+}
+
+function collectPromiseObserveEnvSourceNodeIds(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+    fieldName: string,
+): number[] {
+    const baseValue = contract.invokeExpr?.getBase?.();
+    if (!(baseValue instanceof Local)) {
+        return [];
+    }
+    return resolvePromiseObserveEnvSourceNodeIdsFromLocal(
+        scene,
+        pag,
+        baseValue,
+        contract.stmt,
+        fieldName,
+        new Set<string>(),
+    );
+}
+
+function resolvePromiseObserveEnvSourceNodeIdsFromLocal(
+    scene: Scene,
+    pag: Pag,
+    local: Local,
+    anchorStmt: any,
+    fieldName: string,
+    visited: Set<string>,
+    depth: number = 0,
+): number[] {
+    if (depth > MAX_PROMISE_SETTLEMENT_TRACE_DEPTH || visited.size > MAX_PROMISE_SETTLEMENT_VISITED) {
+        return [];
+    }
+    const localKey = `observe:${resolveDeclaringMethodSignature(local)}#${safeLocalName(local)}#${safeStmtText(anchorStmt)}`;
+    if (visited.has(localKey)) {
+        return [];
+    }
+    visited.add(localKey);
+
+    const ownerMethod = safeGetDeclaringMethodFromStmt(anchorStmt)
+        || safeGetDeclaringMethodFromStmt(safeGetDeclaringStmt(local));
+    const declaringStmt = resolveLatestAssignStmtForLocal(ownerMethod, local, anchorStmt)
+        || safeGetDeclaringStmt(local);
+    if (!(declaringStmt instanceof ArkAssignStmt) || declaringStmt.getLeftOp?.() !== local) {
+        return [];
+    }
+
+    const rightOp = declaringStmt.getRightOp?.();
+    if (isDeferredContinuationInvoke(rightOp)) {
+        const localWriteSourceNodeIds = collectContinuationCaptureWriteSourceNodeIds(
+            scene,
+            pag,
+            rightOp,
+            fieldName,
+        );
+        if (localWriteSourceNodeIds.length > 0) {
+            return localWriteSourceNodeIds;
+        }
+        const prevBase = (rightOp as any)?.getBase?.();
+        if (prevBase instanceof Local) {
+            return resolvePromiseObserveEnvSourceNodeIdsFromLocal(
+                scene,
+                pag,
+                prevBase,
+                declaringStmt,
+                fieldName,
+                visited,
+                depth + 1,
+            );
+        }
+        return [];
+    }
+
+    if (rightOp instanceof Local) {
+        return resolvePromiseObserveEnvSourceNodeIdsFromLocal(
+            scene,
+            pag,
+            rightOp,
+            declaringStmt,
+            fieldName,
+            visited,
+            depth + 1,
+        );
+    }
+
+    return [];
+}
+
+function collectContinuationCaptureWriteSourceNodeIds(
+    scene: Scene,
+    pag: Pag,
+    invokeExpr: any,
+    fieldName: string,
+): number[] {
+    const sourceNodeIds: number[] = [];
+    for (const arg of invokeExpr?.getArgs?.() || []) {
+        for (const callbackMethod of resolveMethodsFromCallable(scene, arg, { maxCallableResolveDepth: 4 })) {
+            sourceNodeIds.push(
+                ...collectCallbackCaptureWriteSourceNodeIds(
+                    pag,
+                    callbackMethod,
+                    fieldName,
+                ),
+            );
+        }
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectCallbackCaptureWriteSourceNodeIds(
+    pag: Pag,
+    callbackMethod: any,
+    fieldName: string,
+): number[] {
+    const cfg = callbackMethod.getCfg?.();
+    if (!cfg) return [];
+
+    const fieldLocalNames = new Set(
+        collectClosureFieldReadMappings(callbackMethod)
+            .filter(mapping => mapping.fieldName === fieldName)
+            .map(mapping => mapping.callbackLocal.getName?.() || ""),
+    );
+    const sourceNodeIds: number[] = [];
+
+    for (const stmt of cfg.getStmts()) {
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        const left = stmt.getLeftOp?.();
+        const right = stmt.getRightOp?.();
+
+        if (left instanceof Local && fieldLocalNames.has(left.getName?.() || "")) {
+            if (isClosureCarrierFieldRead(right, fieldName)) {
+                continue;
+            }
+            sourceNodeIds.push(...collectSourceNodeIdsFromValue(pag, right, stmt));
+            continue;
+        }
+
+        const writtenField = extractClosureCarrierFieldName(left);
+        if (writtenField && writtenField === fieldName) {
+            sourceNodeIds.push(...collectSourceNodeIdsFromValue(pag, right, stmt));
+        }
+    }
+
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectSourceNodeIdsFromValue(
+    pag: Pag,
+    value: any,
+    anchorStmt: any,
+): number[] {
+    const sourceNodeIds: number[] = [];
+    for (const sourceLocal of collectOrdinaryTaintPreservingSourceLocals(value)) {
+        sourceNodeIds.push(
+            ...collectNodeIds(resolveExistingPagNodes(pag, sourceLocal, anchorStmt)),
+        );
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectExactHandoffEndpointNodeIds(
+    pag: Pag,
+    value: any,
+    anchorStmt: any,
+): number[] {
+    const existing = collectNodeIds(resolveExistingPagNodes(pag, value, anchorStmt));
+    if (existing.length > 0 || !value || !anchorStmt) {
+        return existing;
+    }
+    if (!(value instanceof Local) && !(value instanceof ArkInstanceFieldRef) && !(value instanceof ClosureFieldRef)) {
+        return [];
+    }
+    try {
+        pag.getOrNewNode(0, value, anchorStmt);
+    } catch {
+        return [];
+    }
+    return collectNodeIds(resolveExistingPagNodes(pag, value, anchorStmt));
+}
+
+function isClosureCarrierFieldRead(
+    value: any,
+    fieldName: string,
+): boolean {
+    return extractClosureCarrierFieldName(value) === fieldName;
+}
+
+function extractClosureCarrierFieldName(
+    value: any,
+): string | undefined {
+    if (value instanceof ClosureFieldRef) {
+        return value.getFieldName?.() || undefined;
+    }
+    if (!(value instanceof ArkInstanceFieldRef)) {
+        return undefined;
+    }
+    const base = value.getBase?.();
+    if (!(base instanceof Local)) {
+        return undefined;
+    }
+    const baseName = base.getName?.() || "";
+    if (baseName !== "this" && !baseName.startsWith("%closures")) {
+        return undefined;
+    }
+    return value.getFieldSignature?.().getFieldName?.() || value.getFieldName?.() || undefined;
+}
+
+function resolveCompletionBindings(
+    scene: Scene,
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): ExecutionHandoffResolvedEdgeBinding[] {
+    if (!(contract.stmt instanceof ArkAssignStmt)) {
+        return [];
+    }
+
+    const bindings: ExecutionHandoffResolvedEdgeBinding[] = [];
+    const resultNodeIds = collectCompletionResultNodeIds(pag, contract);
+    if (resultNodeIds.length === 0) {
+        return bindings;
+    }
+
+    if (contract.semantics.continuationRole !== "observe") {
+        for (const retStmt of collectMethodReturnStmts(contract.unit)) {
+            if (!(retStmt instanceof ArkReturnStmt)) continue;
+            const retValue = retStmt.getOp?.();
+            if (!(retValue instanceof Local)) continue;
+            const sourceNodeIds = collectOrMaterializeExactLocalNodeIds(pag, retValue, retStmt);
+            if (sourceNodeIds.length === 0) continue;
+            bindings.push({
+                edgeType: CallEdgeType.RETURN,
+                sourceNodeIds,
+                targetNodeIds: resultNodeIds,
+            });
+        }
+    }
+
+    const baseValue = contract.invokeExpr?.getBase?.();
+    if (contract.ports.preserve !== "preserve0" && baseValue instanceof Local) {
+        const preserveActivations = contract.semantics.preserve.length > 0
+            ? contract.semantics.preserve
+            : [contract.activation];
+        for (const preserveActivation of preserveActivations) {
+            const sourceNodeIds = isPromiseSettlementActivation(preserveActivation)
+                ? collectPromiseSettlementSourceNodeIdsForActivation(scene, pag, contract, preserveActivation)
+                : collectNodeIds(resolveExistingPagNodes(pag, baseValue, contract.stmt));
+            if (sourceNodeIds.length === 0) {
+                continue;
+            }
+            bindings.push({
+                edgeType: CallEdgeType.CALL,
+                sourceNodeIds,
+                targetNodeIds: resultNodeIds,
+                calleeSignatureOverride: `__handoff_preserve__:${preserveActivation}`,
+                calleeMethodNameOverride: contract.unit.getName?.() || preserveActivation,
+            });
+        }
+    }
+
+    return bindings;
+}
+
+function collectCompletionResultNodeIds(
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): number[] {
+    if (!(contract.stmt instanceof ArkAssignStmt)) {
+        return [];
+    }
+    const invokeResult = contract.stmt.getLeftOp();
+    const resultNodeIds = invokeResult instanceof Local
+        ? collectOrMaterializeExactLocalNodeIds(pag, invokeResult, contract.stmt)
+        : collectNodeIds(resolveExistingPagNodes(pag, invokeResult, contract.stmt));
+    if (contract.ports.completion !== "await_site") {
+        return resultNodeIds;
+    }
+
+    const awaitResumeNodeIds: number[] = [];
+    const sourceMethods = contract.sourceMethods.length > 0 ? contract.sourceMethods : [contract.caller];
+    for (const method of sourceMethods) {
+        const cfg = method.getCfg?.();
+        if (!cfg) continue;
+        for (const stmt of cfg.getStmts?.() || []) {
+            if (!(stmt instanceof ArkAssignStmt)) continue;
+            const right = stmt.getRightOp?.();
+            if (!(right instanceof ArkAwaitExpr)) continue;
+            const promiseValue = right.getPromise?.();
+            if (safeValueText(promiseValue) !== safeValueText(invokeResult)) continue;
+            const left = stmt.getLeftOp?.();
+            awaitResumeNodeIds.push(
+                ...(left instanceof Local
+                    ? collectOrMaterializeExactLocalNodeIds(pag, left, stmt)
+                    : collectNodeIds(resolveExistingPagNodes(pag, left, stmt))),
+            );
+        }
+    }
+
+    return dedupeNodeIds([...resultNodeIds, ...awaitResumeNodeIds]);
+}
+
+function collectOrMaterializeExactLocalNodeIds(
+    pag: Pag,
+    local: Local,
+    anchorStmt: any,
+): number[] {
+    const existingNodeIds = collectNodeIds(resolveExistingPagNodes(pag, local, anchorStmt));
+    if (existingNodeIds.length > 0) {
+        return existingNodeIds;
+    }
+    const getOrNewNode = (pag as any).getOrNewNode;
+    if (typeof getOrNewNode !== "function") {
+        return [];
+    }
+    // The caller has already identified an exact callback-return or await-result
+    // endpoint from the concrete contract; materialize only that local endpoint.
+    const node = getOrNewNode.call(pag, 0, local, anchorStmt);
+    const nodeId = node?.getID?.();
+    return typeof nodeId === "number" ? [nodeId] : [];
+}
+
+function collectInvokeBaseNodeIds(
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): number[] {
+    const baseValue = contract.invokeExpr?.getBase?.();
+    if (!(baseValue instanceof Local)) {
+        return [];
+    }
+    return collectNodeIds(resolveExistingPagNodes(pag, baseValue, contract.stmt));
+}
+
+function collectMethodReturnStmts(method: any): ArkReturnStmt[] {
+    const directReturns = (method.getReturnStmt?.() || [])
+        .filter((stmt: any): stmt is ArkReturnStmt => stmt instanceof ArkReturnStmt);
+    if (directReturns.length > 0) {
+        return directReturns;
+    }
+    const cfg = method.getCfg?.();
+    if (!cfg) {
+        return [];
+    }
+    return (cfg.getStmts?.() || [])
+        .filter((stmt: any): stmt is ArkReturnStmt => stmt instanceof ArkReturnStmt);
+}
+
+function collectActivationSourceNodeIds(
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+): number[] {
+    const explicitSourceNodeIds = resolveExplicitSourceSelectorNodeIds(pag, contract, contract.activationSource);
+    if (explicitSourceNodeIds.length > 0) {
+        return explicitSourceNodeIds;
+    }
+    const sourceNodeIds: number[] = [];
+    const invokeArgs = contract.invokeExpr?.getArgs?.() || [];
+    const preferredArgIndexes = contract.matchingArgIndexes.length > 0
+        ? contract.matchingArgIndexes
+        : contract.callableArgIndexes;
+
+    for (const argIndex of preferredArgIndexes) {
+        if (argIndex < 0 || argIndex >= invokeArgs.length) continue;
+        sourceNodeIds.push(...collectNodeIds(resolveExistingPagNodes(pag, invokeArgs[argIndex], contract.stmt)));
+    }
+
+    if (sourceNodeIds.length === 0) {
+        sourceNodeIds.push(...collectInvokeBaseNodeIds(pag, contract));
+    }
+
+    if (sourceNodeIds.length === 0) {
+        const sourceMethods = contract.sourceMethods.length > 0 ? contract.sourceMethods : [contract.caller];
+        for (const method of sourceMethods) {
+            sourceNodeIds.push(...collectThisCarrierNodeIds(pag, method, contract.stmt));
+        }
+    }
+
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function resolveExplicitSourceSelectorNodeIds(
+    pag: Pag,
+    contract: ExecutionHandoffContractRecord,
+    selector: ExecutionHandoffContractRecord["activationSource"] | undefined,
+): number[] {
+    if (!selector) {
+        return [];
+    }
+
+    if (selector.kind === "base") {
+        return collectInvokeBaseNodeIds(pag, contract);
+    }
+
+    if (selector.kind === "result") {
+        if (!(contract.stmt instanceof ArkAssignStmt)) {
+            return [];
+        }
+        return collectNodeIds(
+            resolveExistingPagNodes(pag, contract.stmt.getLeftOp(), contract.stmt),
+        );
+    }
+
+    if (selector.kind === "arg") {
+        const invokeArgs = contract.invokeExpr?.getArgs?.() || [];
+        if (selector.index < 0 || selector.index >= invokeArgs.length) {
+            return [];
+        }
+        return collectNodeIds(
+            resolveExistingPagNodes(pag, invokeArgs[selector.index], contract.stmt),
+        );
+    }
+
+    const sourceMethods = contract.sourceMethods.length > 0 ? contract.sourceMethods : [contract.caller];
+    const sourceNodeIds: number[] = [];
+    for (const method of sourceMethods) {
+        sourceNodeIds.push(...collectThisCarrierNodeIds(pag, method, contract.stmt));
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectActivationTargetNodeIds(
+    pag: Pag,
+    unit: any,
+): number[] {
+    const thisNodeIds = collectThisCarrierNodeIds(pag, unit, firstMethodStmt(unit), { materializeExact: true });
+    if (thisNodeIds.length > 0) {
+        return thisNodeIds;
+    }
+
+    const paramStmts = collectParameterAssignStmts(unit);
+    for (const paramStmt of paramStmts) {
+        const paramLocal = paramStmt.getLeftOp?.();
+        if (!(paramLocal instanceof Local)) continue;
+        const targetNodeIds = collectNodeIds(resolveExistingPagNodes(pag, paramLocal, paramStmt));
+        if (targetNodeIds.length > 0) {
+            return targetNodeIds;
+        }
+    }
+
+    const firstStmt = firstMethodStmt(unit);
+    const leftOp = firstStmt?.getLeftOp?.();
+    if (leftOp instanceof Local) {
+        const targetNodeIds = collectNodeIds(resolveExistingPagNodes(pag, leftOp, firstStmt));
+        if (targetNodeIds.length > 0) {
+            return targetNodeIds;
+        }
+    }
+
+    return [];
+}
+
+function collectClosureFieldReadMappings(
+    callbackMethod: any,
+): Array<{ callbackLocal: Local; fieldName: string; anchorStmt: ArkAssignStmt }> {
+    const results: Array<{ callbackLocal: Local; fieldName: string; anchorStmt: ArkAssignStmt }> = [];
+    const cfg = callbackMethod.getCfg?.();
+    if (!cfg) return results;
+
+    for (const stmt of cfg.getStmts()) {
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        const left = stmt.getLeftOp?.();
+        const right = stmt.getRightOp?.();
+        if (!(left instanceof Local)) continue;
+        if (!(right instanceof ArkInstanceFieldRef) && !(right instanceof ClosureFieldRef)) continue;
+
+        const base = right.getBase?.();
+        if (!(base instanceof Local)) continue;
+        const isClosureCarrier = right instanceof ClosureFieldRef || base.getName?.().startsWith("%closures");
+        if (!isClosureCarrier) continue;
+
+        const fieldName = right instanceof ClosureFieldRef
+            ? right.getFieldName?.()
+            : right.getFieldSignature?.().getFieldName?.();
+        if (!fieldName) continue;
+        results.push({
+            callbackLocal: left,
+            fieldName,
+            anchorStmt: stmt,
+        });
+    }
+
+    return results;
+}
+
+function collectFreeLocalReadMappings(
+    callbackMethod: any,
+): Array<{ callbackLocal: Local; localName: string; anchorStmt: any }> {
+    const results: Array<{ callbackLocal: Local; localName: string; anchorStmt: any }> = [];
+    const cfg = callbackMethod.getCfg?.();
+    if (!cfg) return results;
+
+    const seen = new Set<string>();
+    const maybeRecord = (value: any, anchorStmt: any): void => {
+        if (!(value instanceof Local)) return;
+        if (value.getName?.() === "this") return;
+        if (safeGetDeclaringStmt(value)) return;
+        const localName = value.getName?.();
+        if (!localName) return;
+        const key = `${localName}#${safeStmtText(anchorStmt)}`;
+        if (seen.has(key)) return;
+        seen.add(key);
+        results.push({
+            callbackLocal: value,
+            localName,
+            anchorStmt,
+        });
+    };
+
+    for (const stmt of cfg.getStmts()) {
+        if (stmt instanceof ArkAssignStmt) {
+            maybeRecord(stmt.getRightOp?.(), stmt);
+        }
+        const invokeExpr = stmt.getInvokeExpr?.();
+        if (invokeExpr) {
+            maybeRecord(invokeExpr.getBase?.(), stmt);
+            for (const arg of invokeExpr.getArgs?.() || []) {
+                maybeRecord(arg, stmt);
+            }
+        }
+    }
+
+    return results;
+}
+
+function methodReadsDirectThisField(method: any): boolean {
+    const cfg = method.getCfg?.();
+    if (!cfg) return false;
+    for (const stmt of cfg.getStmts()) {
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        const right = stmt.getRightOp?.();
+        if (!(right instanceof ArkInstanceFieldRef)) continue;
+        const base = right.getBase?.();
+        if (base instanceof Local && base.getName?.() === "this") {
+            return true;
+        }
+    }
+    return false;
+}
+
+function collectMethodSourceNodeIdsByName(
+    pag: Pag,
+    method: any,
+    localName: string,
+): number[] {
+    const local = resolveMethodLocalByName(method, localName);
+    if (!(local instanceof Local)) {
+        return [];
+    }
+    const anchorStmt = safeGetDeclaringStmt(local) || firstMethodStmt(method);
+    const nodeIds = collectNodeIds(resolveExistingPagNodes(pag, local, anchorStmt));
+    const extraPointToIds: number[] = [];
+    for (const nodeId of nodeIds) {
+        const pagNode: any = pag.getNode(nodeId);
+        if (!pagNode) continue;
+        for (const targetId of pagNode.getPointTo?.() || []) {
+            extraPointToIds.push(targetId);
+        }
+    }
+    return dedupeNodeIds([...nodeIds, ...extraPointToIds]);
+}
+
+function collectMethodThisFieldWriteSourceNodeIds(
+    pag: Pag,
+    method: any,
+    fieldName: string,
+): number[] {
+    const cfg = method?.getCfg?.();
+    if (!cfg) return [];
+
+    const sourceNodeIds: number[] = [];
+    for (const stmt of cfg.getStmts()) {
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        const left = stmt.getLeftOp?.();
+        if (!(left instanceof ArkInstanceFieldRef)) continue;
+        const base = left.getBase?.();
+        if (!(base instanceof Local) || base.getName?.() !== "this") continue;
+        const writtenField = left.getFieldSignature?.().getFieldName?.() || left.getFieldName?.();
+        if (writtenField !== fieldName) continue;
+        sourceNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, left, stmt));
+        for (const sourceLocal of collectOrdinaryTaintPreservingSourceLocals(stmt.getRightOp?.())) {
+            sourceNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, sourceLocal, stmt));
+        }
+    }
+    return dedupeNodeIds(sourceNodeIds);
+}
+
+function collectDirectThisFieldReadTargetNodeIds(
+    pag: Pag,
+    method: any,
+    fieldName: string,
+): number[] {
+    const cfg = method?.getCfg?.();
+    if (!cfg) return [];
+
+    const targetNodeIds: number[] = [];
+    for (const stmt of cfg.getStmts()) {
+        if (stmt instanceof ArkAssignStmt) {
+            const right = stmt.getRightOp?.();
+            if (matchesDirectThisFieldRead(right, fieldName)) {
+                targetNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, right, stmt));
+                const left = stmt.getLeftOp?.();
+                if (left instanceof Local) {
+                    targetNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, left, stmt));
+                }
+            }
+        }
+
+        const invokeExpr = stmt.getInvokeExpr?.();
+        if (!invokeExpr) continue;
+        const base = invokeExpr.getBase?.();
+        if (matchesDirectThisFieldRead(base, fieldName)) {
+            targetNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, base, stmt));
+        }
+        for (const arg of invokeExpr.getArgs?.() || []) {
+            if (matchesDirectThisFieldRead(arg, fieldName)) {
+                targetNodeIds.push(...collectExactHandoffEndpointNodeIds(pag, arg, stmt));
+            }
+        }
+    }
+
+    return dedupeNodeIds(targetNodeIds);
+}
+
+function matchesDirectThisFieldRead(
+    value: any,
+    fieldName: string,
+): boolean {
+    if (!(value instanceof ArkInstanceFieldRef)) {
+        return false;
+    }
+    const base = value.getBase?.();
+    if (!(base instanceof Local) || base.getName?.() !== "this") {
+        return false;
+    }
+    const readField = value.getFieldSignature?.().getFieldName?.() || value.getFieldName?.();
+    return readField === fieldName;
+}
+
+function collectThisCarrierNodeIds(
+    pag: Pag,
+    method: any,
+    anchorStmt?: any,
+    options: { materializeExact?: boolean } = {},
+): number[] {
+    const thisLocal = resolveMethodLocalByName(method, "this");
+    if (!(thisLocal instanceof Local)) {
+        return [];
+    }
+
+    const resolvedAnchor = anchorStmt || safeGetDeclaringStmt(thisLocal) || firstMethodStmt(method);
+    let localNodeIds = collectNodeIds(
+        resolveExistingPagNodes(pag, thisLocal, resolvedAnchor),
+    );
+    if (localNodeIds.length === 0 && options.materializeExact && resolvedAnchor) {
+        const getOrNewNode = (pag as any).getOrNewNode;
+        if (typeof getOrNewNode === "function") {
+            const node = getOrNewNode.call(pag, 0, thisLocal, resolvedAnchor);
+            const nodeId = node?.getID?.();
+            if (typeof nodeId === "number") {
+                localNodeIds = [nodeId];
+            }
+        }
+    }
+    const objectNodeIds: number[] = [];
+    for (const nodeId of localNodeIds) {
+        const pagNode: any = pag.getNode(nodeId);
+        if (!pagNode) continue;
+        for (const targetId of pagNode.getPointTo?.() || []) {
+            objectNodeIds.push(targetId);
+        }
+    }
+
+    return dedupeNodeIds([...localNodeIds, ...objectNodeIds]);
+}
+
+function resolveMethodLocalByName(method: any, localName: string): Local | undefined {
+    const locals = method?.getBody?.()?.getLocals?.();
+    if (typeof locals?.get === "function") {
+        const direct = locals.get(localName);
+        if (direct instanceof Local) {
+            return direct;
+        }
+    }
+
+    const cfg = method?.getCfg?.();
+    if (!cfg) return undefined;
+    for (const stmt of cfg.getStmts()) {
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        const left = stmt.getLeftOp?.();
+        if (!(left instanceof Local) || left.getName?.() !== localName) continue;
+        const right = stmt.getRightOp?.();
+        if (localName === "this" && right instanceof ArkThisRef) {
+            return left;
+        }
+    }
+
+    return undefined;
+}
+
+function firstMethodStmt(method: any): any | undefined {
+    const cfg = method?.getCfg?.();
+    return cfg?.getStmts?.()?.[0];
+}
+
+function resolveLatestAssignStmtForLocal(
+    method: any,
+    local: Local,
+    beforeStmt?: any,
+): ArkAssignStmt | undefined {
+    const cfg = method?.getCfg?.();
+    if (!cfg) return undefined;
+    const stmts = cfg.getStmts?.() || [];
+    const beforeIndex = beforeStmt ? stmts.indexOf(beforeStmt) : -1;
+    const upperBound = beforeIndex >= 0 ? beforeIndex : stmts.length - 1;
+    for (let i = upperBound; i >= 0; i -= 1) {
+        const stmt = stmts[i];
+        if (!(stmt instanceof ArkAssignStmt)) continue;
+        if (stmt.getLeftOp?.() === local) {
+            return stmt;
+        }
+    }
+    return undefined;
+}
+
+function collectNodeIds(nodes?: Map<number, number>): number[] {
+    if (!nodes || nodes.size === 0) {
+        return [];
+    }
+    return dedupeNodeIds([...nodes.values()]);
+}
+
+function dedupeNodeIds(nodeIds: number[]): number[] {
+    return [...new Set(nodeIds.filter(id => Number.isFinite(id)))].sort((a, b) => a - b);
+}

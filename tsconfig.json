@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "outDir": "./out",
+    "rootDir": ".",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "strict": false,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitOnError": false
+  },
+  "include": [
+    "src/**/*.ts",
+    "arkanalyzer/out/src/**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "out",
+    "tmp"
+  ]
+}

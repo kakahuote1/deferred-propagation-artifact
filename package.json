@@ -1,0 +1,20 @@
+{
+  "name": "deferred-propagation-artifact",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Artifact package.",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test:ude": "npm run build && node scripts/run_ude_tests.js"
+  },
+  "dependencies": {
+    "commander": "13.1.0",
+    "log4js": "6.9.1",
+    "ohos-typescript": "4.9.5-r4"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.11",
+    "typescript": "5.0.4"
+  }
+}

@@ -1,0 +1,534 @@
+{
+  "id": "asset.rule.kernel.transfers.collection",
+  "plane": "rule",
+  "status": "official",
+  "surfaces": [
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "Map",
+            "methodName": "set",
+            "parameterTypes": [
+              "K",
+              "V"
+            ],
+            "returnType": "this",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 41
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "Map",
+            "methodName": "get",
+            "parameterTypes": [
+              "K"
+            ],
+            "returnType": "V | undefined",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 34
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "WeakMap",
+            "methodName": "set",
+            "parameterTypes": [
+              "K",
+              "V"
+            ],
+            "returnType": "this",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 80
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "WeakMap",
+            "methodName": "get",
+            "parameterTypes": [
+              "K"
+            ],
+            "returnType": "V | undefined",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 71
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3ASet:decl=interface%3ASet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3ASet:decl=interface%3ASet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "Set",
+            "methodName": "add",
+            "parameterTypes": [
+              "T"
+            ],
+            "returnType": "this",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 93
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakSet:decl=interface%3AWeakSet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakSet:decl=interface%3AWeakSet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.collection.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "WeakSet",
+            "methodName": "add",
+            "parameterTypes": [
+              "T"
+            ],
+            "returnType": "this",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.collection.d.ts",
+          "line": 131
+        }
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0001",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0001"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "Map.set value_to_map_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0002",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0002"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "Map.set key_to_map_key_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0003",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AMap:decl=interface%3AMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0003"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "Map.get map_slot_to_return transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0004",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0004"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "WeakMap.set value_to_weakmap_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0005",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aset:invoke=call:params=0%3AK%2C1%3AV:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0005"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "WeakMap.set key_to_weakmap_key_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0006",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakMap:decl=interface%3AWeakMap:member=method%3Ainstance%3Aget:invoke=call:params=0%3AK:ret=V%20%7C%20undefined",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0006"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "WeakMap.get weakmap_slot_to_return transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0007",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3ASet:decl=interface%3ASet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3ASet:decl=interface%3ASet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0007"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "Set.add value_to_set_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.collection:0008",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakSet:decl=interface%3AWeakSet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.collection.d.ts:file=typescript%2Flib%2Flib.es2015.collection.d.ts:export=interface%3AWeakSet:decl=interface%3AWeakSet:member=method%3Ainstance%3Aadd:invoke=call:params=0%3AT:ret=this",
+      "assetId": "asset.rule.kernel.transfers.collection",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.collection:0008"
+      ],
+      "semanticsFamily": "tsjs-collection",
+      "metadata": {
+        "description": "WeakSet.add value_to_weakset_slot transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    }
+  ],
+  "effectTemplates": [
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0001",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "map"
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0002",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "mapkey"
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0003",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "map"
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0004",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "weakmap"
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0005",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "weakmapkey"
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0006",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "weakmap"
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0007",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "set"
+      },
+      "transferKind": "collection"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.collection:0008",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "endpoint": {
+          "base": {
+            "kind": "receiver"
+          }
+        },
+        "pathFrom": {
+          "base": {
+            "kind": "arg",
+            "index": 0
+          }
+        },
+        "slotKind": "weakset"
+      },
+      "transferKind": "collection"
+    }
+  ],
+  "provenance": {
+    "source": "builtin",
+    "evidenceLocations": [
+      {
+        "file": "typescript/lib/lib.es2015.collection.d.ts"
+      },
+      {
+        "file": "src/models/kernel/rules/transfers/collection.rules.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "id": "asset.rule.kernel.transfers.json_uri",
+  "plane": "rule",
+  "status": "official",
+  "surfaces": [
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Aparse:invoke=call:params=0%3Astring%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any:ret=any",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Aparse:invoke=call:params=0%3Astring%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any:ret=any",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "JSON",
+            "methodName": "parse",
+            "parameterTypes": [
+              "string",
+              "(this: any, key: string, value: any) => any"
+            ],
+            "returnType": "any",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 1163
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "JSON",
+            "methodName": "stringify",
+            "parameterTypes": [
+              "any",
+              "(this: any, key: string, value: any) => any",
+              "string | number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 1171
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(number%20%7C%20string)%5B%5D%20%7C%20null%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(number%20%7C%20string)%5B%5D%20%7C%20null%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "JSON",
+            "methodName": "stringify",
+            "parameterTypes": [
+              "any",
+              "(number | string)[] | null",
+              "string | number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 1179
+        }
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.json_uri:0001",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Aparse:invoke=call:params=0%3Astring%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any:ret=any",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Aparse:invoke=call:params=0%3Astring%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any:ret=any",
+      "assetId": "asset.rule.kernel.transfers.json_uri",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.json_uri:0001"
+      ],
+      "semanticsFamily": "json",
+      "metadata": {
+        "description": "JSON.parse text_to_value transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.json_uri:0002",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(this%3A%20any%2C%20key%3A%20string%2C%20value%3A%20any)%20%3D%3E%20any%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "assetId": "asset.rule.kernel.transfers.json_uri",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.json_uri:0002"
+      ],
+      "semanticsFamily": "json",
+      "metadata": {
+        "description": "JSON.stringify value_to_text transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.json_uri:0003",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(number%20%7C%20string)%5B%5D%20%7C%20null%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AJSON:decl=interface%3AJSON:member=method%3Ainstance%3Astringify:invoke=call:params=0%3Aany%2C1%3A%3F%3A(number%20%7C%20string)%5B%5D%20%7C%20null%2C2%3A%3F%3Astring%20%7C%20number:ret=string",
+      "assetId": "asset.rule.kernel.transfers.json_uri",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.json_uri:0003"
+      ],
+      "semanticsFamily": "json",
+      "metadata": {
+        "description": "JSON.stringify value_to_text transfer."
+      },
+      "completeness": "complete",
+      "confidence": "certain"
+    }
+  ],
+  "effectTemplates": [
+    {
+      "id": "template:asset.rule.kernel.transfers.json_uri:0001",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "json"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.json_uri:0002",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "json"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.json_uri:0003",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "json"
+    }
+  ],
+  "provenance": {
+    "source": "builtin",
+    "evidenceLocations": [
+      {
+        "file": "typescript/lib/lib.es5.d.ts"
+      },
+      {
+        "file": "src/models/kernel/rules/transfers/json_uri.rules.json"
+      }
+    ]
+  }
+}

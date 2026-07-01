@@ -1,0 +1,2140 @@
+{
+  "id": "asset.rule.kernel.transfers.string",
+  "plane": "rule",
+  "status": "official",
+  "surfaces": [
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "concat",
+            "parameterTypes": [
+              "string[]"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 430
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoString:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoString:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toString",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 412
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AvalueOf:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AvalueOf:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "valueOf",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 529
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aslice:invoke=call:params=0%3A%3F%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aslice:invoke=call:params=0%3A%3F%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "slice",
+            "parameterTypes": [
+              "number",
+              "number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 484
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstring:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstring:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "substring",
+            "parameterTypes": [
+              "number",
+              "number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 499
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstr:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstr:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "substr",
+            "parameterTypes": [
+              "number",
+              "number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 526
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Atrim:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Atrim:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "trim",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 514
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimStart:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimStart:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2019.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "trimStart",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2019.string.d.ts",
+          "line": 24
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimEnd:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimEnd:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2019.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "trimEnd",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2019.string.d.ts",
+          "line": 21
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimLeft:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimLeft:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2019.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "trimLeft",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2019.string.d.ts",
+          "line": 30
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimRight:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimRight:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2019.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "trimRight",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2019.string.d.ts",
+          "line": 36
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoUpperCase:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoUpperCase:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toUpperCase",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 508
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLowerCase:invoke=call:params=none:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLowerCase:invoke=call:params=none:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toLowerCase",
+            "parameterTypes": [],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 502
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Arepeat:invoke=call:params=0%3Anumber:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Arepeat:invoke=call:params=0%3Anumber:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.core.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "repeat",
+            "parameterTypes": [
+              "number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.core.d.ts",
+          "line": 449
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AcharAt:invoke=call:params=0%3Anumber:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AcharAt:invoke=call:params=0%3Anumber:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "charAt",
+            "parameterTypes": [
+              "number"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 418
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%22NFC%22%20%7C%20%22NFD%22%20%7C%20%22NFKC%22%20%7C%20%22NFKD%22:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%22NFC%22%20%7C%20%22NFD%22%20%7C%20%22NFKC%22%20%7C%20%22NFKD%22:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.core.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "normalize",
+            "parameterTypes": [
+              "\"NFC\" | \"NFD\" | \"NFKC\" | \"NFKD\""
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.core.d.ts",
+          "line": 434
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%3F%3Astring:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%3F%3Astring:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.core.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "normalize",
+            "parameterTypes": [
+              "string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.core.d.ts",
+          "line": 442
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toLocaleLowerCase",
+            "parameterTypes": [
+              "string | string[]"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 505
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2020.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toLocaleLowerCase",
+            "parameterTypes": [
+              "Intl.LocalesArgument"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2020.string.d.ts",
+          "line": 32
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toLocaleUpperCase",
+            "parameterTypes": [
+              "string | string[]"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 511
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2020.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "toLocaleUpperCase",
+            "parameterTypes": [
+              "Intl.LocalesArgument"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2020.string.d.ts",
+          "line": 35
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2022.string.d.ts:file=typescript%2Flib%2Flib.es2022.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aat:invoke=call:params=0%3Anumber:ret=string%20%7C%20undefined",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2022.string.d.ts:file=typescript%2Flib%2Flib.es2022.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aat:invoke=call:params=0%3Anumber:ret=string%20%7C%20undefined",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2022.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "at",
+            "parameterTypes": [
+              "number"
+            ],
+            "returnType": "string | undefined",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2022.string.d.ts",
+          "line": 24
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "replace",
+            "parameterTypes": [
+              "string | RegExp",
+              "string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 463
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "replace",
+            "parameterTypes": [
+              "string | RegExp",
+              "(substring: string",
+              " ...args: any[]) => string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 470
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2021.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "replaceAll",
+            "parameterTypes": [
+              "string | RegExp",
+              "string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2021.string.d.ts",
+          "line": 25
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2021.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "replaceAll",
+            "parameterTypes": [
+              "string | RegExp",
+              "(substring: string",
+              " ...args: any[]) => string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2021.string.d.ts",
+          "line": 32
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Amatch:invoke=call:params=0%3Astring%20%7C%20RegExp:ret=RegExpMatchArray%20%7C%20null",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Amatch:invoke=call:params=0%3Astring%20%7C%20RegExp:ret=RegExpMatchArray%20%7C%20null",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "match",
+            "parameterTypes": [
+              "string | RegExp"
+            ],
+            "returnType": "RegExpMatchArray | null",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 456
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AmatchAll:invoke=call:params=0%3ARegExp:ret=RegExpStringIterator%3CRegExpExecArray%3E",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AmatchAll:invoke=call:params=0%3ARegExp:ret=RegExpStringIterator%3CRegExpExecArray%3E",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2020.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "matchAll",
+            "parameterTypes": [
+              "RegExp"
+            ],
+            "returnType": "RegExpStringIterator<RegExpExecArray>",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2020.string.d.ts",
+          "line": 29
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2017.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "padStart",
+            "parameterTypes": [
+              "number",
+              "string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2017.string.d.ts",
+          "line": 31
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2017.string.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "padEnd",
+            "parameterTypes": [
+              "number",
+              "string"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2017.string.d.ts",
+          "line": 44
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asplit:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A%3F%3Anumber:ret=string%5B%5D",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asplit:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A%3F%3Anumber:ret=string%5B%5D",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es5.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "String",
+            "methodName": "split",
+            "parameterTypes": [
+              "string | RegExp",
+              "number"
+            ],
+            "returnType": "string[]",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es5.d.ts",
+          "line": 491
+        }
+      }
+    },
+    {
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string",
+      "kind": "invoke",
+      "evidence": {
+        "arkanalyzer": {
+          "methodKey": {
+            "declaringFileName": "typescript/lib/lib.es2015.core.d.ts",
+            "declaringNamespacePath": [],
+            "declaringClassName": "StringConstructor",
+            "methodName": "raw",
+            "parameterTypes": [
+              "{ raw: readonly string[] | ArrayLike<string>; }",
+              "any[]"
+            ],
+            "returnType": "string",
+            "staticFlag": false
+          }
+        }
+      },
+      "confidence": "certain",
+      "provenance": {
+        "source": "sdk",
+        "location": {
+          "file": "typescript/lib/lib.es2015.core.d.ts",
+          "line": 560
+        }
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0001",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0001"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0002",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0002"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aconcat:invoke=call:params=0%3Arest%3Astring%5B%5D:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0003",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoString:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0003"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoString:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0004",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AvalueOf:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0004"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AvalueOf:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0005",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aslice:invoke=call:params=0%3A%3F%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0005"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aslice:invoke=call:params=0%3A%3F%3Anumber%2C1%3A%3F%3Anumber:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0006",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstring:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0006"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstring:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0007",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstr:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0007"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asubstr:invoke=call:params=0%3Anumber%2C1%3A%3F%3Anumber:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0008",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Atrim:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0008"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Atrim:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0009",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimStart:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0009"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimStart:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0010",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimEnd:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0010"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimEnd:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0011",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimLeft:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0011"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimLeft:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0012",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimRight:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0012"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2019.string.d.ts:file=typescript%2Flib%2Flib.es2019.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtrimRight:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0013",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoUpperCase:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0013"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoUpperCase:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0014",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLowerCase:invoke=call:params=none:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0014"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLowerCase:invoke=call:params=none:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0015",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Arepeat:invoke=call:params=0%3Anumber:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0015"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Arepeat:invoke=call:params=0%3Anumber:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0016",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AcharAt:invoke=call:params=0%3Anumber:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0016"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AcharAt:invoke=call:params=0%3Anumber:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0017",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%22NFC%22%20%7C%20%22NFD%22%20%7C%20%22NFKC%22%20%7C%20%22NFKD%22:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0017"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%22NFC%22%20%7C%20%22NFD%22%20%7C%20%22NFKC%22%20%7C%20%22NFKD%22:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0018",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%3F%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0018"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Anormalize:invoke=call:params=0%3A%3F%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0019",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0019"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0020",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0020"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleLowerCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0021",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0021"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3Astring%20%7C%20string%5B%5D:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0022",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0022"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AtoLocaleUpperCase:invoke=call:params=0%3A%3F%3AIntl.LocalesArgument:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0023",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2022.string.d.ts:file=typescript%2Flib%2Flib.es2022.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aat:invoke=call:params=0%3Anumber:ret=string%20%7C%20undefined",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0023"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2022.string.d.ts:file=typescript%2Flib%2Flib.es2022.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Aat:invoke=call:params=0%3Anumber:ret=string%20%7C%20undefined"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0024",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0024"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0025",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0025"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0026",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0026"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0027",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0027"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Areplace:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0028",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0028"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0029",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0029"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0030",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0030"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0031",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0031"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2021.string.d.ts:file=typescript%2Flib%2Flib.es2021.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AreplaceAll:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A(substring%3A%20string%2C%20...args%3A%20any%5B%5D)%20%3D%3E%20string:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0032",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Amatch:invoke=call:params=0%3Astring%20%7C%20RegExp:ret=RegExpMatchArray%20%7C%20null",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0032"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Amatch:invoke=call:params=0%3Astring%20%7C%20RegExp:ret=RegExpMatchArray%20%7C%20null"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0033",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AmatchAll:invoke=call:params=0%3ARegExp:ret=RegExpStringIterator%3CRegExpExecArray%3E",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0033"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2020.string.d.ts:file=typescript%2Flib%2Flib.es2020.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3AmatchAll:invoke=call:params=0%3ARegExp:ret=RegExpStringIterator%3CRegExpExecArray%3E"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0034",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0034"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0035",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0035"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadStart:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0036",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0036"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0037",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0037"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2017.string.d.ts:file=typescript%2Flib%2Flib.es2017.string.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3ApadEnd:invoke=call:params=0%3Anumber%2C1%3A%3F%3Astring:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0038",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asplit:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A%3F%3Anumber:ret=string%5B%5D",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0038"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es5.d.ts:file=typescript%2Flib%2Flib.es5.d.ts:export=interface%3AString:decl=interface%3AString:member=method%3Ainstance%3Asplit:invoke=call:params=0%3Astring%20%7C%20RegExp%2C1%3A%3F%3Anumber:ret=string%5B%5D"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0039",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0039"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string"
+    },
+    {
+      "bindingId": "binding:asset.rule.kernel.transfers.string:0040",
+      "surfaceId": "surface:api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string",
+      "assetId": "asset.rule.kernel.transfers.string",
+      "plane": "rule",
+      "role": "transfer",
+      "effectTemplateRefs": [
+        "template:asset.rule.kernel.transfers.string:0040"
+      ],
+      "semanticsFamily": "transfer",
+      "completeness": "complete",
+      "confidence": "certain",
+      "canonicalApiId": "api:official:tsjs:module=typescript%2Flib%2Flib.es2015.core.d.ts:file=typescript%2Flib%2Flib.es2015.core.d.ts:export=interface%3AStringConstructor:decl=interface%3AStringConstructor:member=method%3Ainstance%3Araw:invoke=call:params=0%3A%7B%20raw%3A%20readonly%20string%5B%5D%20%7C%20ArrayLike%3Cstring%3E%3B%20%7D%2C1%3Arest%3Aany%5B%5D:ret=string"
+    }
+  ],
+  "effectTemplates": [
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0001",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0002",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0003",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0004",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0005",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0006",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0007",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0008",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0009",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0010",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0011",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0012",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0013",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0014",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0015",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0016",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0017",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0018",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0019",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0020",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0021",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0022",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0023",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0024",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0025",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0026",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0027",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0028",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0029",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0030",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0031",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0032",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0033",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0034",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0035",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0036",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0037",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0038",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "receiver"
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0039",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 0
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    },
+    {
+      "id": "template:asset.rule.kernel.transfers.string:0040",
+      "confidence": "certain",
+      "kind": "rule.transfer",
+      "from": {
+        "base": {
+          "kind": "arg",
+          "index": 1
+        }
+      },
+      "to": {
+        "base": {
+          "kind": "return"
+        }
+      },
+      "transferKind": "transfer"
+    }
+  ],
+  "provenance": {
+    "source": "builtin",
+    "evidenceLocations": [
+      {
+        "file": "typescript/lib/lib.es5.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2015.core.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2017.string.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2019.string.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2020.string.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2021.string.d.ts"
+      },
+      {
+        "file": "typescript/lib/lib.es2022.string.d.ts"
+      },
+      {
+        "file": "src/models/kernel/rules/transfers/string.rules.json"
+      }
+    ]
+  }
+}
